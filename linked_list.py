@@ -1,4 +1,4 @@
-class Node(object):
+class Node(object): #staged commit
 
 	def __init__ (self, d, n = None):
 		self.data = d
