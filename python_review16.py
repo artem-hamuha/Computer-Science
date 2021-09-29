@@ -46,9 +46,9 @@ class My_Iterator:
 
     def __next__(self):
         self.last += 2
-        if self.last > 8:
+        if self.last > 10:
             raise StopIteration
-        return self.itlasterator
+        return self.last
 
 num = My_Iterator()
 
