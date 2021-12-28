@@ -20,7 +20,7 @@ bidders = {}
 print(logo)
 print("Welcome to the biidding simulator\n")
 
-l = 1
+
 run = True
 while run == True:
     name = input("Name of bidder - ")
