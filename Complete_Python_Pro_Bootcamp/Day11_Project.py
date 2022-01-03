@@ -20,27 +20,31 @@ def deal_card(who: list):
     who.append(card)
 
 def hit(who):
+    """Deal card to player."""
     deal_card(who)
 
-def total(hand):
-    sum = 0
-    for num in hand:
-        sum += num
+def stand():
+    """Player doesnt want card; so dealer doesnt deal."""
+    pass
 
-dealer_hand = []
-dealer_total = total(dealer_hand)
-
-player_hand = []
-player_total = total(player_hand)
-
-play = input("Would you like to play BlackJack?[yes/no]\n").lower()
-if play not in yes_no:
-    print("Invalid input, try again.")
-    play = input("Would you like to play BlackJack?[yes/no]\n").lower()
+def check_ace(hand):
+    """If hand has ace and total is more than 21 ace is made a 1."""
+    count = 0
+    for ace in hand:
+        if ace == 11 and sum(hand) > 21:
+            hand[count] = 1
+        count += 1
 
 
-while play == "yes":
-    while len(dealer_hand) is not 2 and len(player_hand) is not 2:
-        deal_card(player_hand)
-        deal_card(dealer_hand)
+dealer_hand = [11, 11]
 
+player_hand = [10, 5]
+
+print(dealer_hand)
+check_ace(dealer_hand)
+print(dealer_hand)
+
+#play = input("Would you like to play BlackJack?[yes/no]\n").lower()
+#if play not in yes_no:
+#    print("Invalid input, try again.")
+#    play = input("Would you like to play BlackJack?[yes/no]\n").lower()
