@@ -81,11 +81,11 @@ while play == "yes":
             break
 
         print(f"\nYour Hand: {player_hand}\nTotal: {sum(player_hand)}")
+        print(f"\nDealer Hand: {dealer_hand}\nTotal: {sum(player_hand)}")
         hit_stand = input("\nWould you like to hit [yes/no]\n").lower()
-
         while hit_stand not in yes_no:
             print("\nInvalid input, try again.")
-            hit_stand = input("Would you like to hit [yes/no]\n").lower()
+            hit_stand = input("\nWould you like to hit [yes/no]\n").lower()
     
     print(f"Dealer Hand: {dealer_hand}\nTotal: {sum(dealer_hand)}")
 
@@ -98,8 +98,8 @@ while play == "yes":
             print(f"Dealer Hand: {dealer_hand}\nTotal: {sum(dealer_hand)}")
             print("Dealer Busts.\nPlayer Wins!")
             break
-
-        print(f"Dealer Hand: {dealer_hand}\nTotal: {sum(dealer_hand)}")
+        
+        print(f"\nDealer Hand: {dealer_hand}\nTotal: {sum(dealer_hand)}")
     
     if dealer_hand < player_hand:
         print("Player Wins!")
