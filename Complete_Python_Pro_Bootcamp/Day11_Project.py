@@ -35,9 +35,15 @@ def check_ace(hand):
             hand[count] = 1
         count += 1
 
-
-
-
+def compare(hand1, hand2):
+    if hand1 < hand2:
+        return "Player Wins!"
+    
+    elif hand1 > hand2:
+        return "Dealer Wins!"
+    
+    else:
+        return "Push."
 
 print(logo)
 
@@ -47,70 +53,87 @@ while play not in yes_no:
     play = input("Would you like to play BlackJack? [yes/no]\n").lower()
 
 while play == "yes":
-    player_hand = []
+        player_hand = []
 
-    dealer_hand = []
+        dealer_hand = []
 
-    while len(player_hand) != 2 and len(dealer_hand) != 2:
-        deal_card(player_hand)
-        deal_card(dealer_hand)
+        while len(player_hand) != 2 and len(dealer_hand) != 2:
+            deal_card(player_hand)
+            deal_card(dealer_hand)
 
-    dealer_hand_1c = ["?", dealer_hand[1]]
+        dealer_hand_1c = ["?", dealer_hand[1]]
     
-    print(f"\nYour Hand: {player_hand}\nTotal: {sum(player_hand)}")
-    print(f"\nDealer Hand: {dealer_hand_1c}\nTotal: {dealer_hand[1]}")
-
-    if sum(player_hand) == 21:
-        print("\nBlackJack!!!\nYou Win!")
-        break
-
-    hit_stand = input("Would you like to hit [yes/no]\n").lower()
-
-    while hit_stand not in yes_no:
-        print("\nInvalid input, try again.")
-        hit_stand = input("Would you like to hit [yes/no]\n").lower()
-    
-    while hit_stand == "yes":
-        check_ace(player_hand)
-        hit(player_hand)
-        check_ace(player_hand)
-
-        if sum(player_hand) > 21:
-            print(f"\nYour Hand: {player_hand}\nTotal: {sum(player_hand)}")
-            print("\nYou Bust.\nDealer Wins!")
-            break
-
         print(f"\nYour Hand: {player_hand}\nTotal: {sum(player_hand)}")
-        print(f"\nDealer Hand: {dealer_hand}\nTotal: {sum(player_hand)}")
-        hit_stand = input("\nWould you like to hit [yes/no]\n").lower()
-        while hit_stand not in yes_no:
-            print("\nInvalid input, try again.")
-            hit_stand = input("\nWould you like to hit [yes/no]\n").lower()
-    
-    print(f"Dealer Hand: {dealer_hand}\nTotal: {sum(dealer_hand)}")
-
-    while sum(dealer_hand) < 17:
-        check_ace(dealer_hand)
-        hit(dealer_hand)
-        check_ace(dealer_hand)
+        print(f"\nDealer Hand: {dealer_hand_1c}\nTotal: {dealer_hand[1]}")
 
         if sum(dealer_hand) > 21:
-            print(f"Dealer Hand: {dealer_hand}\nTotal: {sum(dealer_hand)}")
-            print("Dealer Busts.\nPlayer Wins!")
-            break
+            check_ace(dealer_hand)
+        elif sum(player_hand) > 21:
+            check_ace(player_hand)
         
-        print(f"\nDealer Hand: {dealer_hand}\nTotal: {sum(dealer_hand)}")
+        elif sum(player_hand) == 21 and sum(dealer_hand):
+            print("Push")
+            play = "no"
+        elif sum(player_hand) == 21:
+            print("\nBlackJack!!!\nYou Win!")
+            play = "no"
+        elif sum(dealer_hand) == 21:
+            print("\nBlackJack!!!\nDealer Wins!")
+        else:
+            pass
+            
+
+        hit_stand = input("Would you like to hit [yes/no]\n").lower()
+
+        while hit_stand not in yes_no:
+            print("\nInvalid input, try again.")
+            hit_stand = input("Would you like to hit [yes/no]\n").lower()
     
-    if dealer_hand < player_hand:
-        print("Player Wins!")
+        while hit_stand == "yes":
+            check_ace(player_hand)
+            hit(player_hand)
+            check_ace(player_hand)
+
+            if sum(player_hand) > 21:
+                print(f"\nYour Hand: {player_hand}\nTotal: {sum(player_hand)}")
+                print(f"Dealer Hand: {dealer_hand}\nTotal: {sum(dealer_hand)}")
+                print("\nYou Bust.\nDealer Wins!")
+                False
+                
+            print(f"\nYour Hand: {player_hand}\nTotal: {sum(player_hand)}")
+            print(f"\nDealer Hand: {dealer_hand_1c}\nTotal: {dealer_hand[1]}")
+            hit_stand = input("\nWould you like to hit [yes/no]\n").lower()
+
+            while hit_stand not in yes_no:
+                print("\nInvalid input, try again.")
+                hit_stand = input("\nWould you like to hit [yes/no]\n").lower()
     
-    elif dealer_hand > player_hand:
-        print("Dealer Wins!")
+        print(f"Dealer Hand: {dealer_hand}\nTotal: {sum(dealer_hand)}")
+
+        while sum(dealer_hand) < 17:
+            check_ace(dealer_hand)
+            hit(dealer_hand)
+            check_ace(dealer_hand)
+
+            print(f"\nYour Hand: {player_hand}\nTotal: {sum(player_hand)}")
+            print(f"\nDealer Hand: {dealer_hand}\nTotal: {sum(dealer_hand)}")
+
+        if sum(dealer_hand) > 21:
+            print("Dealer Busts.\nPlayer Wins!")
+            False
+          
+        else:
+            print(compare(sum(dealer_hand), sum(player_hand)))
     
-    else:
-        print("Push.")
-    
-    play = input("\nWould you like to play again? [yes/no]\n").lower()
-    while play not in yes_no:
-        print("\nInvalid input, try again.")
-        play = input("Would you like to play BlackJack? [yes/no]\n").lower()
+        play = input("\nWould you like to play again? [yes/no]\n").lower()
+        
+        while play not in yes_no:
+            print("\nInvalid input, try again.")
+            play = input("Would you like to play BlackJack? [yes/no]\n").lower()
+        
+        if play == "yes":
+            pass
+        else:
+            play = "no"
+        
+            
