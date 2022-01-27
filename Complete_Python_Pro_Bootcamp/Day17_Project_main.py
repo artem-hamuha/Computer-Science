@@ -10,4 +10,4 @@ for question in question_data:
     question_bank.append(new_question)
 
 d = QuizBrain(question_bank)
-d.next_question()
+d.ask_qestions()
