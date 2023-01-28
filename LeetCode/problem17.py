@@ -2,7 +2,7 @@
 import re
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
-        return re.search("^" + p + "$", s)!=None
+        return re.search("." + p + "*", s)!=None
 
 ans = Solution()
-print(ans.isMatch("aab", "c*a*b"))
+print(ans.isMatch("ab", "c*a*b"))
